@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge"
 import { Switch } from "@/components/ui/switch"
 import { Label } from "@/components/ui/label"
 import { Separator } from "@/components/ui/separator"
+import { DdosMitigationRules } from "@/components/security/ddos-mitigation-rules"
 
 export function DDoSControls() {
     const [underAttackMode, setUnderAttackMode] = useState(false)
@@ -52,6 +53,13 @@ export function DDoSControls() {
                     </CardContent>
                 )}
             </Card>
+			<DdosMitigationRules
+				  routers={[
+					{ id: "rtr-us-west-1", name: "router-us-west-1" },
+					{ id: "rtr-us-east-2", name: "router-us-east-2" },
+					{ id: "rtr-eu-west-1", name: "router-eu-west-1" },
+				  ]}
+				/>
 
             <div className="grid gap-6 md:grid-cols-2">
                 {/* Traffic Shaping */}

@@ -61,8 +61,7 @@ export default function RouterDetailPage() {
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="routing">Routing Configuration</TabsTrigger>
                     <TabsTrigger value="policies">ACL</TabsTrigger>
-		    <TabsTrigger value="vrf">VRF</TabsTrigger>
-                    <TabsTrigger value="metrics">Metrics</TabsTrigger>
+					<TabsTrigger value="vrf">VRF</TabsTrigger>
                     <TabsTrigger value="terminal" className="flex items-center gap-2">
                         <Terminal className="h-3 w-3" /> Console
                     </TabsTrigger>
@@ -167,13 +166,10 @@ export default function RouterDetailPage() {
                 <TabsContent value="policies" className="space-y-4">
                     <RouterPolicies routerId={routerData.id} />
                 </TabsContent>
-		<TabsContent value="vrf" className="space-y-4">
-  		    <RouterVrf routerId={routerData.id} />
-		</TabsContent>
-                <TabsContent value="metrics" className="pt-2">
-                    <RouterMetrics routerId={routerData.id} />
-                </TabsContent>
-
+				<TabsContent value="vrf" className="space-y-4">
+					<RouterVrf routerId={routerData.id} />
+				</TabsContent>
+               
                 <TabsContent value="terminal" className="space-y-4">
                     <Card className="border-0 shadow-none bg-transparent">
                         <WebTerminal routerId={routerData.id} />
