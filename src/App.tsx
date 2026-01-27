@@ -37,9 +37,9 @@ function App() {
             <Routes>
               <Route element={<MainLayout />}>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/tenants" element={<Tenants />} />
-                <Route path="/tenants/:id" element={<TenantDetail />} />
-                <Route path="/users" element={<Users />} />
+                //<Route path="/tenants" element={<Tenants />} />
+                //<Route path="/tenants/:id" element={<TenantDetail />} />
+                
                 <Route path="/network-paths/:pathId" element={<XwanPathDetail />} />
                 <Route path="/routers" element={<Network />} />
                 <Route path="/routers/:id" element={<RouterDetail />} />
@@ -47,9 +47,10 @@ function App() {
                 <Route path="/policies" element={<PoliciesPage />} />
                 <Route path="/security" element={<SecurityPage />} />
 				<Route path="/organizations" element={<OrganizationsPage />} />
+				<Route path="/users" element={<Users />} />
 				<Route path="/subscriptions" element={<SubscriptionsPage />} />
-                <Route path="/metrics" element={<Metrics />} />
-                <Route path="/alerts" element={<Alerts />} />
+                //<Route path="/metrics" element={<Metrics />} />
+                //<Route path="/alerts" element={<Alerts />} />
                 <Route path="/chat" element={<Chat />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
