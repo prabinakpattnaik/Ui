@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Plus, Search, Settings, Trash2, ChevronRight, Building2 } from "lucide-react"
+import { ensureDefaultVrf, addOrgVrf, deleteOrgVrf } from "@/services/org-vrfs"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -95,29 +96,36 @@ export default function OrganizationsPage() {
   )
 
   const onCreateOrg = (input: OrgCreateInput) => {
-    const id = `org_${Date.now()}`
-    const newOrg: Org = {
-      id,
-      name: input.name.trim(),
-      code: input.code.trim().toUpperCase(),
-      description: input.description?.trim() || undefined,
-      contactEmail: input.contactEmail?.trim() || undefined,
-      createdAt: todayYmd(),
-    }
+  const id = `org_${Date.now()}`
+  const newOrg: Org = {
+    id,
+    name: input.name.trim(),
+    code: input.code.trim().toUpperCase(),
+    description: input.description?.trim() || undefined,
+    contactEmail: input.contactEmail?.trim() || undefined,
+    createdAt: todayYmd(),
+  }
 
-    // ✅ attach a default VRF on org creation
-    const defaultVrf: OrgVrf = {
+  setOrgs((prev) => [newOrg, ...prev])
+
+  // ✅ Create default VRF in global store (localStorage via services/org-vrfs.ts)
+  ensureDefaultVrf(id, newOrg.code)
+
+  // ✅ Optional: also refresh this page VRF state from store OR just add "global" locally
+  setVrfs((prev) => [
+    {
       id: `vrf_${Date.now()}`,
       orgId: id,
-      name: makeDefaultVrfName(newOrg.code),
-      description: "Default VRF",
-      rd: `65000:${Math.floor(Math.random() * 900 + 100)}`,
-    }
+      name: "global",
+      description: `${newOrg.code} Global routing table`,
+      rd: "-",
+    },
+    ...prev,
+  ])
 
-    setOrgs((prev) => [newOrg, ...prev])
-    setVrfs((prev) => [defaultVrf, ...prev])
-    setAddOpen(false)
-  }
+  setAddOpen(false)
+ }
+
 
   const onDeleteOrg = (orgId: string) => {
     setOrgs((prev) => prev.filter((o) => o.id !== orgId))
@@ -128,20 +136,32 @@ export default function OrganizationsPage() {
     }
   }
 
-  const onAddVrf = (orgId: string, vrf: Omit<OrgVrf, "id" | "orgId">) => {
-    const newVrf: OrgVrf = {
-      id: `vrf_${Date.now()}`,
-      orgId,
-      name: vrf.name.trim(),
-      description: vrf.description?.trim() || undefined,
-      rd: vrf.rd?.trim() || undefined,
-    }
-    setVrfs((prev) => [newVrf, ...prev])
+ const onAddVrf = (orgId: string, vrf: Omit<OrgVrf, "id" | "orgId">) => {
+  // save in global store
+  addOrgVrf({
+    orgId,
+    name: vrf.name.trim(),
+    description: vrf.description?.trim() || undefined,
+    rd: vrf.rd?.trim() || undefined,
+  })
+
+  // update UI immediately
+  const newVrf: OrgVrf = {
+    id: `vrf_${Date.now()}`,
+    orgId,
+    name: vrf.name.trim(),
+    description: vrf.description?.trim() || undefined,
+    rd: vrf.rd?.trim() || undefined,
   }
+  setVrfs((prev) => [newVrf, ...prev])
+}
+
 
   const onDeleteVrf = (vrfId: string) => {
-    setVrfs((prev) => prev.filter((v) => v.id !== vrfId))
-  }
+  deleteOrgVrf(vrfId)
+  setVrfs((prev) => prev.filter((v) => v.id !== vrfId))
+ }
+
 
   return (
     <div className="flex-1 space-y-6 p-8 pt-6">
