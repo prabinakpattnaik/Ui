@@ -20,10 +20,8 @@ const sidebarItems = [
     { icon: Users, label: "Users", href: "/users" },
     { icon: Network, label: "SxR", href: "/routers" },
     { icon: Globe, label: "xWAN", href: "/topology" },
-    // { icon: FileText, label: "Policies", href: "/policies" },
     { icon: Shield, label: "xSecurity", href: "/security" },
-    // { icon: Activity, label: "Metrics", href: "/metrics" },
-    // { icon: Bell, label: "Alerts", href: "/alerts" },
+	{ icon: Building2, label: "Organizations", href: "/organizations" },
     { icon: Bot, label: "Assistant", href: "/chat" },
     { icon: Settings, label: "Settings", href: "/settings" },
 ];
