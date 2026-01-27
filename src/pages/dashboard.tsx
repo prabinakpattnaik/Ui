@@ -298,21 +298,6 @@ export default function Dashboard() {
 
                         {/* Center - Traffic Chart & Top Consumers */}
                         <div className="col-span-1 md:col-span-3 space-y-4">
-                            <Card className="bg-card/50 backdrop-blur-sm border-primary/10">
-                                <CardHeader>
-                                    <CardTitle className="flex items-center gap-2">
-                                        <TrendingUp className="h-4 w-4 text-primary" />
-                                        Traffic Overview
-                                    </CardTitle>
-                                    <CardDescription>
-                                        Global bandwidth consumption (Ingress vs Egress)
-                                    </CardDescription>
-                                </CardHeader>
-                                <CardContent className="pl-2">
-                                    <Overview />
-                                </CardContent>
-                            </Card>
-
                             {/* Top Consumers Widget */}
                             <Card className="bg-card/50 backdrop-blur-sm border-primary/10">
                                 <CardHeader className="pb-2">
@@ -333,28 +318,7 @@ export default function Dashboard() {
                                     ))}
                                 </CardContent>
                             </Card>
-                        </div>
-
-                        {/* Right Column - Recent Events */}
-                        <div className="col-span-1 md:col-span-2">
-                            <RecentEvents />
-                        </div>
-                    </div>
-
-                    {/* Router Health and Map */}
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-                        <Card className="col-span-4 bg-card/50 backdrop-blur-sm">
-                            <CardHeader>
-                                <CardTitle>Router Health Distribution</CardTitle>
-                                <CardDescription>
-                                    Status breakdown across all regions
-                                </CardDescription>
-                            </CardHeader>
-                            <CardContent className="pl-2">
-                                <RouterHealth />
-                            </CardContent>
-                        </Card>
-                        <Card className="col-span-3 bg-card/50 backdrop-blur-sm">
+							<Card className="col-span-3 bg-card/50 backdrop-blur-sm">
                             <CardHeader>
                                 <CardTitle>Recent Activity</CardTitle>
                                 <CardDescription>
@@ -365,6 +329,12 @@ export default function Dashboard() {
                                 <RecentActivity />
                             </CardContent>
                         </Card>
+                        </div>
+
+                        {/* Right Column - Recent Events */}
+                        <div className="col-span-1 md:col-span-2">
+                            <RecentEvents />
+                        </div>
                     </div>
 
                     {/* Global Map */}

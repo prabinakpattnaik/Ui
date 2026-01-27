@@ -277,12 +277,7 @@ export default function NetworkPage() {
                     <p className="text-muted-foreground">
                         Manage physical endpoints, topology, and routing policies.
                     </p>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <Button onClick={() => setIsProvisionWizardOpen(true)}>
-                        <Network className="mr-2 h-4 w-4" /> Provision Router
-                    </Button>
-                </div>
+                </div>                
             </div>
 
             <ProvisionRouterWizard
@@ -340,8 +335,8 @@ export default function NetworkPage() {
             <Tabs defaultValue="inventory" className="space-y-4">
                 <TabsList>
                     <TabsTrigger value="inventory">Inventory</TabsTrigger>
-                    <TabsTrigger value="topology">Topology</TabsTrigger>
-                    <TabsTrigger value="ha">HA</TabsTrigger>
+					<TabsTrigger value="ha">High Availability</TabsTrigger>
+                    <TabsTrigger value="topology">Topology</TabsTrigger>                    
                     {/* <TabsTrigger value="routing">Routing</TabsTrigger> */}
                     {/* <TabsTrigger value="subnets">Subnets & VPCs</TabsTrigger> */}
                 </TabsList>
@@ -386,15 +381,29 @@ export default function NetworkPage() {
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col gap-2">
-                            <Button variant="outline" size="sm" onClick={handleRefresh} disabled={isLoading}>
-                                <RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} /> Refresh Status
-                            </Button>
-                            <Button size="sm" onClick={() => setIsProvisionWizardOpen(true)}>
-                                <Plus className="mr-2 h-4 w-4" />
-                                Provision Router
-                            </Button>
-                        </div>
+                        <div className="flex items-center justify-end gap-2">
+						  <Button
+							variant="outline"
+							size="sm"
+							onClick={handleRefresh}
+							disabled={isLoading}
+							className="h-9"
+						  >
+							<RefreshCw className={`mr-2 h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+							Refresh Status
+						  </Button>
+
+						  <Button
+							size="sm"
+							onClick={() => setIsProvisionWizardOpen(true)}
+							className="h-9"
+						  >
+							<Network className="mr-2 h-4 w-4" />
+							<Plus className="mr-2 h-4 w-4" />
+							Provision SxR
+						  </Button>
+						</div>
+
                     </div>
 
                     {isLoading ? (

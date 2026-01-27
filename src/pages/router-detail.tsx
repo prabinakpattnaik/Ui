@@ -11,6 +11,7 @@ import { LineChart } from "@/components/metrics/line-chart"
 import { RouterMetrics } from "@/components/network/router-metrics"
 import { RouterPolicies } from "@/components/network/router-policies"
 import { RouterRouting } from "@/components/network/router-routing"
+import { RouterVrf } from "@/components/network/router-vrf"
 
 // Mock Data
 const routerData = {
@@ -58,8 +59,9 @@ export default function RouterDetailPage() {
             <Tabs defaultValue="overview" onValueChange={setActiveTab} className="space-y-4">
                 <TabsList>
                     <TabsTrigger value="overview">Overview</TabsTrigger>
-                    <TabsTrigger value="routing">Routing</TabsTrigger>
+                    <TabsTrigger value="routing">Routing Configuration</TabsTrigger>
                     <TabsTrigger value="policies">ACL</TabsTrigger>
+		    <TabsTrigger value="vrf">VRF</TabsTrigger>
                     <TabsTrigger value="metrics">Metrics</TabsTrigger>
                     <TabsTrigger value="terminal" className="flex items-center gap-2">
                         <Terminal className="h-3 w-3" /> Console
@@ -152,13 +154,22 @@ export default function RouterDetailPage() {
                 </TabsContent>
 
                 <TabsContent value="routing" className="space-y-4">
-                    <RouterRouting routerId={routerData.id} />
-                </TabsContent>
+				  <RouterRouting
+					routerId={routerData.id}
+					vrfs={[
+					  { name: "global" },
+					  { name: "ORG-BBL-BACKUP" },
+					  { name: "MGMT" },
+					]}
+				  />
+				</TabsContent>
 
                 <TabsContent value="policies" className="space-y-4">
                     <RouterPolicies routerId={routerData.id} />
                 </TabsContent>
-
+		<TabsContent value="vrf" className="space-y-4">
+  		    <RouterVrf routerId={routerData.id} />
+		</TabsContent>
                 <TabsContent value="metrics" className="pt-2">
                     <RouterMetrics routerId={routerData.id} />
                 </TabsContent>
