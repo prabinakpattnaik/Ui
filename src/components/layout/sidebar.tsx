@@ -13,6 +13,7 @@ import {
 import { cn } from "@/lib/utils";
 
 import { SxalableLogo } from "@/components/sxalable-logo";
+import { CreditCard } from "lucide-react";
 
 const sidebarItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -22,6 +23,7 @@ const sidebarItems = [
     { icon: Globe, label: "xWAN", href: "/topology" },
     { icon: Shield, label: "xSecurity", href: "/security" },
 	{ icon: Building2, label: "Organizations", href: "/organizations" },
+	{ icon: CreditCard, label: "Subscriptions", href: "/subscriptions" },
     { icon: Bot, label: "Assistant", href: "/chat" },
     { icon: Settings, label: "Settings", href: "/settings" },
 ];

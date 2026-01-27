@@ -24,6 +24,8 @@ import { Toaster } from "@/components/ui/toaster"
 import { GlobalLoading } from "@/components/ui/global-loading"
 import { ErrorBoundary } from "@/components/error-boundary"
 import OrganizationsPage from "@/pages/organizations"
+import SubscriptionsPage from "@/pages/subscriptions"
+
 
 function App() {
   return (
@@ -45,6 +47,7 @@ function App() {
                 <Route path="/policies" element={<PoliciesPage />} />
                 <Route path="/security" element={<SecurityPage />} />
 				<Route path="/organizations" element={<OrganizationsPage />} />
+				<Route path="/subscriptions" element={<SubscriptionsPage />} />
                 <Route path="/metrics" element={<Metrics />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/chat" element={<Chat />} />
