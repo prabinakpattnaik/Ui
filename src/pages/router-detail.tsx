@@ -11,7 +11,7 @@ import { LineChart } from "@/components/metrics/line-chart"
 import { RouterMetrics } from "@/components/network/router-metrics"
 import { RouterPolicies } from "@/components/network/router-policies"
 import { RouterRouting } from "@/components/network/router-routing"
-import { RouterVrf } from "@/components/network/router-vrf"
+//import { RouterVrf } from "@/components/network/router-vrf"
 
 // Mock Data
 const routerData = {
@@ -22,12 +22,13 @@ const routerData = {
     uptime: "14d 2h 12m",
     version: "v2.4.1"
 }
+const selectedVrf = "global"
 
 export default function RouterDetailPage() {
     const { id } = useParams()
     const navigate = useNavigate()
     const [activeTab, setActiveTab] = useState("overview")
-
+    const routerId = id ?? routerData.id
     return (
         <div className="flex-1 space-y-6 p-8 pt-6">
             {/* Header */}
@@ -61,8 +62,7 @@ export default function RouterDetailPage() {
                     <TabsTrigger value="overview">Overview</TabsTrigger>
                     <TabsTrigger value="routing">Routing Configuration</TabsTrigger>
                     <TabsTrigger value="policies">ACL</TabsTrigger>
-					<TabsTrigger value="vrf">VRF</TabsTrigger>
-                    <TabsTrigger value="terminal" className="flex items-center gap-2">
+					<TabsTrigger value="terminal" className="flex items-center gap-2">
                         <Terminal className="h-3 w-3" /> Console
                     </TabsTrigger>
                 </TabsList>
@@ -153,22 +153,13 @@ export default function RouterDetailPage() {
                 </TabsContent>
 
                 <TabsContent value="routing" className="space-y-4">
-				  <RouterRouting
-					routerId={routerData.id}
-					vrfs={[
-					  { name: "global" },
-					  { name: "ORG-BBL-BACKUP" },
-					  { name: "MGMT" },
-					]}
-				  />
+
+				  <RouterRouting routerId={routerId} vrf={selectedVrf} />
 				</TabsContent>
 
                 <TabsContent value="policies" className="space-y-4">
                     <RouterPolicies routerId={routerData.id} />
                 </TabsContent>
-				<TabsContent value="vrf" className="space-y-4">
-					<RouterVrf routerId={routerData.id} />
-				</TabsContent>
                
                 <TabsContent value="terminal" className="space-y-4">
                     <Card className="border-0 shadow-none bg-transparent">

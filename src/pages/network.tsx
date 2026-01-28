@@ -54,6 +54,8 @@ import { RouteTable } from "@/components/network/route-table"
 import { HAView } from "@/components/network/ha-view"
 import type { VPC, Subnet } from "@/types/network"
 import { cn } from "@/lib/utils"
+import { OrgVrfHeader } from "@/components/layout/org-vrf-header"
+import { useOrgVrf } from "@/context/org-vrf-context"
 
 // Mock Data for Routers
 const routersData = [
@@ -222,6 +224,7 @@ const mockSubnets: Subnet[] = [
         tags: { tier: 'application' }
     }
 ]
+
 
 export default function NetworkPage() {
     const [isLoading, setIsLoading] = useState(false)
