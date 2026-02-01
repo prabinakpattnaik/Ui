@@ -1,5 +1,8 @@
 import * as React from "react"
 
+// Re-export types for convenience
+export type { Organization, Vrf, VrfWithFeatures } from "@/types/vrf-features"
+
 type OrgVrfState = {
   orgId: string | null
   vrf: string // default "global"

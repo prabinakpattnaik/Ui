@@ -7,12 +7,8 @@ import { OrgVrfProvider } from "@/context/org-vrf-context"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <OrgVrfProvider>
+      <App />
+    </OrgVrfProvider>
   </StrictMode>,
-)
-
-root.render(
-  <OrgVrfProvider>
-    <App />
-  </OrgVrfProvider>
 )
